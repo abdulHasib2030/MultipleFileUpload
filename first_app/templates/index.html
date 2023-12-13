@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload and Display Files</title>
+</head>
+
+<body>
+  <h1 style="text-align: center;">Upload and Display Images</h1>
+  <div style="display: flex; justify-content:center;">
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="{{ form.file.id_for_label }}">File</label>
+      <input type="file" multiple name="{{ form.file.name }}"><br>
+      <button style="margin-top: 5px;" type="submit">submit</button>
+    </form>
+  </div>
+  <div>
+    {% for i in files %}
+    <img src={{i.file.url}} alt="">
+    {% empty %}
+    <li>No files uploaded.</li>
+    {% endfor %}
+  </div>
+</body>
+
+</html>
